@@ -1,7 +1,0 @@
-{
-  "pack": {
-    "pack_format": 8,
-    "supported_formats": [0, 999],
-    "description": "Adds custom skill tree for Pufferfish's Skills mod."
-  }
-}
