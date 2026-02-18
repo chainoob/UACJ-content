@@ -1,13 +1,19 @@
 {
   "mappings": {
     "org/uacjcontent/uacj/mixin/EffectMixin": {
-      "<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V": "Lnet/minecraft/world/effect/MobEffectInstance;<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V"
+      "tick": "Lnet/minecraft/world/effect/MobEffectInstance;m_19552_(Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z"
+    },
+    "org/uacjcontent/uacj/mixin/EnchantmentMenuMixin": {
+      "slotsChanged": "Lnet/minecraft/world/inventory/EnchantmentMenu;m_6199_(Lnet/minecraft/world/Container;)V"
     }
   },
   "data": {
     "searge": {
       "org/uacjcontent/uacj/mixin/EffectMixin": {
-        "<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V": "Lnet/minecraft/world/effect/MobEffectInstance;<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V"
+        "tick": "Lnet/minecraft/world/effect/MobEffectInstance;m_19552_(Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z"
+      },
+      "org/uacjcontent/uacj/mixin/EnchantmentMenuMixin": {
+        "slotsChanged": "Lnet/minecraft/world/inventory/EnchantmentMenu;m_6199_(Lnet/minecraft/world/Container;)V"
       }
     }
   }

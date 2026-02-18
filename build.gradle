@@ -25,6 +25,7 @@ base {
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
+    withSourcesJar()
 }
 
 minecraft {
@@ -37,6 +38,9 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 "${mod_id}" {
@@ -53,17 +57,14 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', mod_id
             args '--nogui'
         }
-
-        data {
-            workingDirectory project.file('run-data')
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-        }
     }
 }
 
 mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
+    add sourceSets.main, "uacj.refmap.json"
+    config "uacj.mixins.json"
+
+    debug.export = true
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
@@ -71,13 +72,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven {
         url "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
+        content { includeGroup "curse.maven" }
     }
-    maven {
-        url = "https://maven.puffish.net"
-    }
+    maven { url = "https://maven.puffish.net" }
     maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
     mavenCentral()
 }
@@ -87,6 +84,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:puffish-skills-835091:7354024")
 
+    // Properly register the Mixin Processor
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
@@ -133,4 +131,3 @@ tasks.named('jar', Jar).configure {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
-

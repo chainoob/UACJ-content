@@ -163,15 +163,22 @@ Writing Output: C:\Users\chainoob\Desktop\uacj_content\UACJ content\build\reobfJ
   org/uacjcontent/uacj/
   org/uacjcontent/uacj/Uacj.class
   org/uacjcontent/uacj/UacjConfig.class
+  org/uacjcontent/uacj/api/
+  org/uacjcontent/uacj/api/PuffishHandler.class
   org/uacjcontent/uacj/core/
+  org/uacjcontent/uacj/core/AmplificationHandler.class
+  org/uacjcontent/uacj/core/CombatHandler.class
   org/uacjcontent/uacj/core/DefectProcessor.class
-  org/uacjcontent/uacj/core/EnchantAmplificationAttribute.class
   org/uacjcontent/uacj/core/EnchantmentAmplificationReward.class
+  org/uacjcontent/uacj/core/ProgressionHandler.class
   org/uacjcontent/uacj/core/UniversalDamageHandler.class
-  org/uacjcontent/uacj/event/
-  org/uacjcontent/uacj/event/UniversalAmplificationHandler.class
+  org/uacjcontent/uacj/init/
+  org/uacjcontent/uacj/init/AttributeInit.class
   org/uacjcontent/uacj/mixin/
   org/uacjcontent/uacj/mixin/EffectMixin.class
+  org/uacjcontent/uacj/mixin/EnchantmentMenuMixin.class
+  org/uacjcontent/uacj/util/
+  org/uacjcontent/uacj/util/ReflectionHelper.class
   pack.mcmeta
   uacj.mixins.json
   uacj.refmap.json

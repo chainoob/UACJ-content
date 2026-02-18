@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 public class ReflectionHelper {
     private static final Field DUR = ObfuscationReflectionHelper.findField(MobEffectInstance.class, "f_19503_");
 
-    public static void setDuration(MobEffectInstance effect, int ticks) {
-        try { DUR.set(effect, ticks); } catch (Exception e) { e.printStackTrace(); }
+    public static void setDuration(MobEffectInstance effect, int ticks) throws IllegalAccessException {
+        DUR.set(effect, ticks);
     }
 }

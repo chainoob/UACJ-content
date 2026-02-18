@@ -1,23 +1,155 @@
 {
-  "enchantAmp": {
-    "title": {
-      "text": "Enchantment Amplification"
-    },
-    "icon": {
-      "type": "item",
-      "data": {
-        "item": "minecraft:enchanted_book"
-      }
-    },
+  "noviceEnchanter":{
+    "title": {"text": "Novice Enchanter"},
+    "icon": {"type": "item", "data": {"item": "minecraft:enchanted_book"}},
     "frame": "challenge",
-    "description": {
-      "text": "Increases global enchantment potency and duration."
-    },
+    "description": {"text": "Unlocks 1 anchored effect slot and +10% amplification"},
+    "cost": 1,
     "rewards": [
       {
         "type": "puffish_skills:attribute",
         "data": {
+          "attribute": "uacj:novice_enchanter",
+          "value": 1,
+          "operation": "addition"
+        }
+      },
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
           "attribute": "uacj:enchant_amplification",
+          "value": 0.1,
+          "operation": "addition"
+        }
+      }
+    ]
+  },
+  "adeptEnchanter":{
+    "title": {"text": "Adept Enchanter"},
+    "icon": {"type": "item", "data": {"item": "minecraft:enchanting_table"}},
+    "frame": "challenge",
+    "description": {"text": "Expands capacity to 3 anchored effect slots and +10% amplification"},
+    "cost": 3,
+    "required_spent_points": 5,
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:adept_enchanter",
+          "value": 1,
+          "operation": "addition"
+        }
+      },
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:enchant_amplification",
+          "value": 0.1,
+          "operation": "addition"
+        }
+      }
+    ]
+  },
+  "masterEnchanter":{
+    "title": {"text": "Master Enchanter"},
+    "icon": {"type": "item", "data": {"item": "minecraft:nether_star"}},
+    "frame": "challenge",
+    "description": {"text": "Expands capacity to 3 anchored effect slots and +10% amplification"},
+    "cost": 3,
+    "required_spent_points": 5,
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:master_enchanter",
+          "value": 1,
+          "operation": "addition"
+        }
+      },
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:enchant_amplification",
+          "value": 0.1,
+          "operation": "addition"
+        }
+      }
+    ]
+  },
+  "enchantReduction":{
+    "title": {"text": "Enchantment Cost Reduction"},
+    "icon": {"type": "item", "data": {"item": "minecraft:book"}},
+    "frame": "challenge",
+    "description": {"text": "-10% enchantment cost"},
+    "cost": 1,
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:enchantment_discount",
+          "value": 0.1,
+          "operation": "addition"
+        }
+      }
+    ]
+  },
+  "experienceGain":{
+    "title": {"text": "Experience Gain Increase"},
+    "icon": {"type": "item", "data": {"item": "minecraft:experience_bottle"}},
+    "frame": "challenge",
+    "description": {"text": "+10% experience gain"},
+    "cost": 1,
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:enchantment_discount",
+          "value": 0.1,
+          "operation": "addition"
+        }
+      }
+    ]
+  },
+  "enchantDefensive":{
+    "title": {"text": "Enchanted Plating"},
+    "icon": {"type": "item", "data": {"item": "minecraft:iron_chestplate"}},
+    "frame": "challenge",
+    "description": {"text": "+1 armor point for enchanted armor"},
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:enchanted_armor_bonus",
+          "value": 1.0,
+          "operation": "addition"
+        }
+      }
+    ]
+  },
+  "enchantOffensive":{
+    "title": {"text": "Arcane Edge"},
+    "icon": {"type": "item", "data": {"item": "minecraft:iron_sword"}},
+    "frame": "challenge",
+    "description": {"text": "+5% attack damage for enchanted weapons"},
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:enchanted_weapon_damage",
+          "value": 0.05,
+          "operation": "addition"
+        }
+      }
+    ]
+  },
+  "magicResist": {
+    "title": {"text": "Magic Resistance"},
+    "icon": {"type": "item", "data": {"item": "minecraft:potion"}},
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:magic_resistance",
           "value": 0.05,
           "operation": "addition"
         }

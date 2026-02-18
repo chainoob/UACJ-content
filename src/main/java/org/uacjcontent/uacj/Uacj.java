@@ -7,14 +7,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.puffish.skillsmod.api.SkillsAPI;
 import org.uacjcontent.uacj.core.*;
+import org.uacjcontent.uacj.init.AttributeInit;
 
 @Mod("uacj")
 public class Uacj {
     public Uacj(FMLJavaModLoadingContext context) {
         IEventBus modBus = context.getModEventBus();
 
-        EnchantAmplificationAttribute.ATTRIBUTES.register(modBus);
-        modBus.addListener(EnchantAmplificationAttribute::onAttributeModification);
+        AttributeInit.ATTRIBUTES.register(modBus);
+        modBus.addListener(AttributeInit::onAttributeModification);
 
         MinecraftForge.EVENT_BUS.register(DefectProcessor.class);
 

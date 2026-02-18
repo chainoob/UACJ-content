@@ -11,6 +11,8 @@ import net.puffish.skillsmod.api.reward.RewardConfigContext;
 import net.puffish.skillsmod.api.json.JsonElement;
 import net.puffish.skillsmod.api.util.Result;
 import net.puffish.skillsmod.api.util.Problem;
+import org.uacjcontent.uacj.init.AttributeInit;
+
 import java.util.UUID;
 
 public class EnchantmentAmplificationReward implements Reward {
@@ -29,7 +31,7 @@ public class EnchantmentAmplificationReward implements Reward {
         ServerPlayer player = context.getPlayer();
         this.playerUUID = player.getUUID();
 
-        AttributeInstance instance = player.getAttribute(EnchantAmplificationAttribute.AMP.get());
+        AttributeInstance instance = player.getAttribute(AttributeInit.AMP.get());
         if (instance != null && instance.getModifier(MODIFIER_UUID) == null) {
             instance.addTransientModifier(new AttributeModifier(
                     MODIFIER_UUID,
@@ -45,7 +47,7 @@ public class EnchantmentAmplificationReward implements Reward {
         if (this.playerUUID != null) {
             ServerPlayer player = context.getServer().getPlayerList().getPlayer(this.playerUUID);
             if (player != null) {
-                AttributeInstance instance = player.getAttribute(EnchantAmplificationAttribute.AMP.get());
+                AttributeInstance instance = player.getAttribute(AttributeInit.AMP.get());
                 if (instance != null) {
                     instance.removeModifier(MODIFIER_UUID);
                 }
