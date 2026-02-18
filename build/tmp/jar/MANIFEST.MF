@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: uacj
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: uacj-content
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor: 
+Implementation-Timestamp: 2026-02-16T10:04:24+0800
+MixinConfigs: uacj.mixins.json
+

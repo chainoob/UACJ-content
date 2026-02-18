@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "org/uacjcontent/uacj/mixin/EffectMixin": {
+      "<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V": "Lnet/minecraft/world/effect/MobEffectInstance;<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V"
+    }
+  },
+  "data": {
+    "searge": {
+      "org/uacjcontent/uacj/mixin/EffectMixin": {
+        "<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V": "Lnet/minecraft/world/effect/MobEffectInstance;<init>(Lnet/minecraft/world/effect/MobEffect;IIZZZ)V"
+      }
+    }
+  }
+}

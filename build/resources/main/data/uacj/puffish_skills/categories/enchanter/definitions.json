@@ -1,0 +1,27 @@
+{
+  "enchantAmp": {
+    "title": {
+      "text": "Enchantment Amplification"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:enchanted_book"
+      }
+    },
+    "frame": "challenge",
+    "description": {
+      "text": "Increases global enchantment potency and duration."
+    },
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "uacj:enchant_amplification",
+          "value": 0.05,
+          "operation": "addition"
+        }
+      }
+    ]
+  }
+}
