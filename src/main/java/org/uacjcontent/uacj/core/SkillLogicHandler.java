@@ -5,47 +5,69 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 public class SkillLogicHandler {
 
-    public static void processInfusion(ServerPlayer player) {
-        ItemStack mainHand = player.getMainHandItem();
-        ItemStack offHand = player.getOffhandItem();
+    public static void processInfusion(final ServerPlayer player) {
+        final ItemStack mainHand = player.getMainHandItem();
+        final boolean isEnchantable = mainHand.isEnchantable() || mainHand.isEnchanted();
+        final Map<Enchantment, Integer> currentEnchants = EnchantmentHelper.getEnchantments(mainHand);
 
-        if (!offHand.is(Items.ENCHANTED_BOOK)) return;
+        final AtomicInteger totalXp = new AtomicInteger(0);
+        final AtomicBoolean mainHandModified = new AtomicBoolean(false);
+        final AtomicBoolean consumedAny = new AtomicBoolean(false);
 
-        Map<Enchantment, Integer> bookEnchants = EnchantmentHelper.getEnchantments(offHand);
-        boolean isEnchantable = mainHand.isEnchantable() || mainHand.isEnchanted();
+        IntStream.range(0, player.getInventory().getContainerSize()).forEach(i -> {
+            final ItemStack slotStack = player.getInventory().getItem(i);
 
-        if (isEnchantable) {
-            Map<Enchantment, Integer> currentEnchants = EnchantmentHelper.getEnchantments(mainHand);
-            boolean applied = false;
+            if (slotStack.is(Items.ENCHANTED_BOOK) && slotStack != mainHand) {
+                final Map<Enchantment, Integer> bookEnchants = EnchantmentHelper.getEnchantments(slotStack);
+                consumedAny.set(true);
 
-            for (Map.Entry<Enchantment, Integer> entry : bookEnchants.entrySet()) {
-                Enchantment ench = entry.getKey();
-                if (ench.canEnchant(mainHand) && EnchantmentHelper.isEnchantmentCompatible(currentEnchants.keySet(), ench)) {
-                    currentEnchants.put(ench, Math.max(currentEnchants.getOrDefault(ench, 0), entry.getValue()));
-                    applied = true;
+                for (final Map.Entry<Enchantment, Integer> entry : bookEnchants.entrySet()) {
+                    final Enchantment ench = entry.getKey();
+                    final int level = entry.getValue();
+
+                    if (isEnchantable && ench.canEnchant(mainHand) && EnchantmentHelper.isEnchantmentCompatible(currentEnchants.keySet(), ench)) {
+                        final int existingLevel = currentEnchants.getOrDefault(ench, 0);
+
+                        if (level > existingLevel) {
+                            currentEnchants.put(ench, level);
+                            mainHandModified.set(true);
+                        } else if (level == existingLevel && level < ench.getMaxLevel()) {
+                            currentEnchants.put(ench, level + 1);
+                            mainHandModified.set(true);
+                        } else {
+                            totalXp.addAndGet((ench.getMinCost(level) * 2) * slotStack.getCount());
+                        }
+                    } else {
+                        totalXp.addAndGet((ench.getMinCost(level) * 2) * slotStack.getCount());
+                    }
                 }
-            }
 
-            if (applied) {
-                EnchantmentHelper.setEnchantments(currentEnchants, mainHand);
-                offHand.shrink(1);
-                finalizeSuccess(player);
+                slotStack.shrink(slotStack.getCount());
             }
-        } else {
-            int xp = bookEnchants.entrySet().stream()
-                    .mapToInt(e -> e.getKey().getMinCost(e.getValue()))
-                    .sum() * 2;
-            player.giveExperiencePoints(xp);
-            offHand.setCount(0);
+        });
+
+        if (mainHandModified.get()) {
+            EnchantmentHelper.setEnchantments(currentEnchants, mainHand);
+        }
+
+        if (totalXp.get() > 0) {
+            player.giveExperiencePoints(totalXp.get());
+        }
+
+        if (consumedAny.get()) {
             finalizeSuccess(player);
         }
     }
 
-    private static void finalizeSuccess(ServerPlayer player) {
-        player.getPersistentData().putBoolean("uacj_skill_infusion_active", false);
+    private static void finalizeSuccess(final ServerPlayer player) {
+        player.getPersistentData().putBoolean("uacj_skill_infusion", false);
     }
 }

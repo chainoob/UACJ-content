@@ -75,6 +75,7 @@ repositories {
         content { includeGroup "curse.maven" }
     }
     maven { url = "https://maven.puffish.net" }
+    maven {url "https://maven.shadowsoffire.dev/releases"}
     maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
     mavenCentral()
 }
@@ -83,8 +84,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     implementation fg.deobf("curse.maven:puffish-skills-835091:7354024")
+    implementation fg.deobf("curse.maven:apotheosis-313970:6461960")
 
-    // Properly register the Mixin Processor
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

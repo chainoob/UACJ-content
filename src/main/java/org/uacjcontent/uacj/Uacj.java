@@ -5,9 +5,10 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.puffish.skillsmod.api.SkillsAPI;
+import org.uacjcontent.uacj.network.NetworkHandler;
 import org.uacjcontent.uacj.core.*;
 import org.uacjcontent.uacj.init.AttributeInit;
+import org.uacjcontent.uacj.reward.SkillReward;
 
 @Mod("uacj")
 public class Uacj {
@@ -18,12 +19,15 @@ public class Uacj {
         modBus.addListener(AttributeInit::onAttributeModification);
 
         MinecraftForge.EVENT_BUS.register(DefectProcessor.class);
+        MinecraftForge.EVENT_BUS.register(SkillInteractionHandler.class);
+
+        SkillReward.register();
 
         modBus.addListener(this::setup);
         context.registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, UacjConfig.SPEC);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> SkillsAPI.registerReward(EnchantmentAmplificationReward.ID, EnchantmentAmplificationReward::parse));
+        event.enqueueWork(NetworkHandler::register);
     }
 }

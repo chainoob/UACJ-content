@@ -1,7 +1,7 @@
 {
   "noviceEnchanter":{
     "title": {"text": "Novice Enchanter"},
-    "icon": {"type": "item", "data": {"item": "minecraft:enchanted_book"}},
+    "icon": {"type": "texture", "data": {"texture": "uacj:textures/icons/novice_ench_icon.png"}},
     "frame": "challenge",
     "description": {"text": "Unlocks 1 anchored effect slot and +10% amplification"},
     "cost": 1,
@@ -26,7 +26,7 @@
   },
   "adeptEnchanter":{
     "title": {"text": "Adept Enchanter"},
-    "icon": {"type": "item", "data": {"item": "minecraft:enchanting_table"}},
+    "icon": {"type": "texture", "data": {"texture": "uacj:textures/icons/adept_ench_icon.png"}},
     "frame": "challenge",
     "description": {"text": "Expands capacity to 3 anchored effect slots and +10% amplification"},
     "cost": 3,
@@ -52,7 +52,7 @@
   },
   "masterEnchanter":{
     "title": {"text": "Master Enchanter"},
-    "icon": {"type": "item", "data": {"item": "minecraft:nether_star"}},
+    "icon": {"type": "texture", "data": {"texture": "uacj:textures/icons/master_ench_icon.png"}},
     "frame": "challenge",
     "description": {"text": "Expands capacity to 3 anchored effect slots and +10% amplification"},
     "cost": 3,
@@ -103,7 +103,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "uacj:enchantment_discount",
+          "attribute": "uacj:experience_gain",
           "value": 0.1,
           "operation": "addition"
         }
@@ -145,6 +145,8 @@
   "magicResist": {
     "title": {"text": "Magic Resistance"},
     "icon": {"type": "item", "data": {"item": "minecraft:potion"}},
+    "frame": "challenge",
+    "description": {"text": "+5% resistance to magic damage and reduced harmful effect duration"},
     "rewards": [
       {
         "type": "puffish_skills:attribute",
@@ -152,6 +154,25 @@
           "attribute": "uacj:magic_resistance",
           "value": 0.05,
           "operation": "addition"
+        }
+      }
+    ]
+  },
+  "skillEnchant1": {
+    "title": "Merge Enchantment",
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:enchanted_book"
+      }
+    },
+    "frame": "challenge",
+    "description": "Hold right click while holding an enchanted book in the offhand to transfer enchantments from enchanted book to the item in the main hand",
+    "rewards": [
+      {
+        "type": "uacj:skill",
+        "data": {
+          "skill_id": "infusion"
         }
       }
     ]

@@ -10,6 +10,4 @@ public interface MobEffectInstanceAccessor {
     @Accessor("duration")
     void setDuration(int duration);
 
-    @Accessor("duration")
-    int getDuration();
 }

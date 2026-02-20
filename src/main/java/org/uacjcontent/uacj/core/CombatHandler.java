@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.uacjcontent.uacj.init.AttributeInit;
-import org.uacjcontent.uacj.util.ReflectionHelper;
+import org.uacjcontent.uacj.mixin.MobEffectInstanceAccessor;
 
 import java.util.stream.StreamSupport;
 
@@ -92,15 +92,16 @@ public class CombatHandler {
     @SubscribeEvent
     public static void handleStatusEffects(MobEffectEvent.Added event) {
         if (event.getEntity() instanceof Player player && hasEnchantedArmor(player)) {
-            final MobEffectInstance effect = event.getEffectInstance();
+            MobEffectInstance effect = event.getEffectInstance();
 
             if (!effect.getEffect().isBeneficial()) {
-                final var resAttr = player.getAttribute(AttributeInit.MAGIC_RESISTANCE.get());
+                var resAttr = player.getAttribute(AttributeInit.MAGIC_RESISTANCE.get());
+
                 if (resAttr != null && resAttr.getValue() > 0) {
-                    try {
-                        int newDuration = Math.max(20, (int) (effect.getDuration() * (1.0f - resAttr.getValue())));
-                        ReflectionHelper.setDuration(effect, newDuration);
-                    } catch (Exception ignored) {}
+                    int originalDur = effect.getDuration();
+                    int targetDur = Math.max(20, (int) (originalDur * (1.0f - resAttr.getValue())));
+
+                    ((MobEffectInstanceAccessor) effect).setDuration(targetDur);
                 }
             }
         }
