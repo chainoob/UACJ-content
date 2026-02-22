@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-public class SkillLogicHandler {
+public class EnchantInfusionHandler {
 
     public static void processInfusion(final ServerPlayer player) {
         final ItemStack mainHand = player.getMainHandItem();
