@@ -1,4 +1,37 @@
 {
-  "attribute.name.Uacj.amplification": "Enchantment Amplification",
-  "Uacj.skill.amplification": "Enchantment Amplification Mastery"
+  "key.uacj.use_skill": "Use Class Skill",
+  "category.uacj.skills": "UACJ Skills",
+
+  "uacj.skill.novice_enchanter.title": "Novice Enchanter",
+  "uacj.skill.novice_enchanter.desc": "Unlocks 1 anchored effect slot and +10% amplification",
+  
+  "uacj.skill.adept_enchanter.title": "Adept Enchanter",
+  "uacj.skill.adept_enchanter.desc": "Expands capacity to 3 anchored effect slots and +10% amplification",
+  
+  "uacj.skill.master_enchanter.title": "Master Enchanter",
+  "uacj.skill.master_enchanter.desc": "Expands capacity to 3 anchored effect slots and +10% amplification",
+  
+  "uacj.skill.enchant_reduction.title": "Enchantment Cost Reduction",
+  "uacj.skill.enchant_reduction.desc": "-10% enchantment cost",
+  
+  "uacj.skill.experience_gain.title": "Experience Gain Increase",
+  "uacj.skill.experience_gain.desc": "+10% experience gain",
+  
+  "uacj.skill.enchant_plating.title": "Enchanted Plating",
+  "uacj.skill.enchant_plating.desc": "+1 armor point for enchanted armor",
+  
+  "uacj.skill.arcane_edge.title": "Arcane Edge",
+  "uacj.skill.arcane_edge.desc": "+5% attack damage for enchanted weapons",
+  
+  "uacj.skill.magic_resist.title": "Magic Resistance",
+  "uacj.skill.magic_resist.desc": "+5% resistance to magic damage and reduced harmful effect duration",
+  
+  "uacj.skill.merge_enchant.title": "Merge Enchantment",
+  "uacj.skill.merge_enchant.desc": "Hold [Right Click] with an enchanted book in offhand to transfer enchantments in the inventory to main hand item",
+  
+  "uacj.skill.soul_harvest.title": "Soul Harvest",
+  "uacj.skill.soul_harvest.desc": "Kills repair your weapon, boost your next attack, and grant speed.",
+
+  "uacj.skill.spectral_flight.title": "Spectral Flight",
+  "uacj.skill.spectral_flight.desc": "Press [V] to charge. Consumes levels for flight duration. Grants No-Clip in blocks and 100% Enchant Amp."
 }

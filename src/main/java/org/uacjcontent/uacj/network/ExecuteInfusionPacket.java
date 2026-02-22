@@ -1,4 +1,4 @@
-package org.uacjcontent.uacj.util;
+package org.uacjcontent.uacj.network;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;

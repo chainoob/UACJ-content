@@ -30,23 +30,23 @@ public class EnchantInfusionHandler {
                 consumedAny.set(true);
 
                 for (final Map.Entry<Enchantment, Integer> entry : bookEnchants.entrySet()) {
-                    final Enchantment ench = entry.getKey();
+                    final Enchantment enchants = entry.getKey();
                     final int level = entry.getValue();
 
-                    if (isEnchantable && ench.canEnchant(mainHand) && EnchantmentHelper.isEnchantmentCompatible(currentEnchants.keySet(), ench)) {
-                        final int existingLevel = currentEnchants.getOrDefault(ench, 0);
+                    if (isEnchantable && enchants.canEnchant(mainHand) && EnchantmentHelper.isEnchantmentCompatible(currentEnchants.keySet(), enchants)) {
+                        final int existingLevel = currentEnchants.getOrDefault(enchants, 0);
 
                         if (level > existingLevel) {
-                            currentEnchants.put(ench, level);
+                            currentEnchants.put(enchants, level);
                             mainHandModified.set(true);
-                        } else if (level == existingLevel && level < ench.getMaxLevel()) {
-                            currentEnchants.put(ench, level + 1);
+                        } else if (level == existingLevel && level < enchants.getMaxLevel()) {
+                            currentEnchants.put(enchants, level + 1);
                             mainHandModified.set(true);
                         } else {
-                            totalXp.addAndGet((ench.getMinCost(level) * 2) * slotStack.getCount());
+                            totalXp.addAndGet((enchants.getMinCost(level) * 2) * slotStack.getCount());
                         }
                     } else {
-                        totalXp.addAndGet((ench.getMinCost(level) * 2) * slotStack.getCount());
+                        totalXp.addAndGet((enchants.getMinCost(level) * 2) * slotStack.getCount());
                     }
                 }
 

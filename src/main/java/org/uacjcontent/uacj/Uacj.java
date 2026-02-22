@@ -18,9 +18,6 @@ public class Uacj {
         AttributeInit.ATTRIBUTES.register(modBus);
         modBus.addListener(AttributeInit::onAttributeModification);
 
-        MinecraftForge.EVENT_BUS.register(DefectProcessor.class);
-        MinecraftForge.EVENT_BUS.register(SkillInteractionHandler.class);
-
         SkillReward.register();
 
         modBus.addListener(this::setup);

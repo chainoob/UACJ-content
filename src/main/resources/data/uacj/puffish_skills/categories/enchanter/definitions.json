@@ -1,180 +1,111 @@
 {
-  "noviceEnchanter":{
-    "title": {"text": "Novice Enchanter"},
-    "icon": {"type": "texture", "data": {"texture": "uacj:textures/icons/novice_ench_icon.png"}},
+  "noviceEnchanter": {
+    "title": "uacj.skill.novice_enchanter.title",
+    "icon": { "type": "texture", "data": { "texture": "uacj:textures/icons/novice_ench_icon.png" } },
     "frame": "challenge",
-    "description": {"text": "Unlocks 1 anchored effect slot and +10% amplification"},
+    "description": {"translate":"uacj.skill.novice_enchanter.desc"},
     "cost": 1,
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:novice_enchanter",
-          "value": 1,
-          "operation": "addition"
-        }
-      },
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:enchant_amplification",
-          "value": 0.1,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:novice_enchanter", "value": 1, "operation": "addition" } },
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:enchant_amplification", "value": 0.1, "operation": "addition" } }
     ]
   },
-  "adeptEnchanter":{
-    "title": {"text": "Adept Enchanter"},
-    "icon": {"type": "texture", "data": {"texture": "uacj:textures/icons/adept_ench_icon.png"}},
+  "adeptEnchanter": {
+    "title": {"translate":"uacj.skill.adept_enchanter.title"},
+    "icon": { "type": "texture", "data": { "texture": "uacj:textures/icons/adept_ench_icon.png" } },
     "frame": "challenge",
-    "description": {"text": "Expands capacity to 3 anchored effect slots and +10% amplification"},
+    "description": {"translate":"uacj.skill.adept_enchanter.desc"},
     "cost": 3,
     "required_spent_points": 5,
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:adept_enchanter",
-          "value": 1,
-          "operation": "addition"
-        }
-      },
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:enchant_amplification",
-          "value": 0.1,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:adept_enchanter", "value": 1, "operation": "addition" } },
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:enchant_amplification", "value": 0.1, "operation": "addition" } }
     ]
   },
-  "masterEnchanter":{
-    "title": {"text": "Master Enchanter"},
-    "icon": {"type": "texture", "data": {"texture": "uacj:textures/icons/master_ench_icon.png"}},
+  "masterEnchanter": {
+    "title": {"translate":"uacj.skill.master_enchanter.title"},
+    "icon": { "type": "texture", "data": { "texture": "uacj:textures/icons/master_ench_icon.png" } },
     "frame": "challenge",
-    "description": {"text": "Expands capacity to 3 anchored effect slots and +10% amplification"},
+    "description": {"translate":"uacj.skill.master_enchanter.desc"},
     "cost": 3,
     "required_spent_points": 5,
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:master_enchanter",
-          "value": 1,
-          "operation": "addition"
-        }
-      },
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:enchant_amplification",
-          "value": 0.1,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:master_enchanter", "value": 1, "operation": "addition" } },
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:enchant_amplification", "value": 0.1, "operation": "addition" } }
     ]
   },
-  "enchantReduction":{
-    "title": {"text": "Enchantment Cost Reduction"},
-    "icon": {"type": "item", "data": {"item": "minecraft:book"}},
+  "enchantReduction": {
+    "title": {"translate":"uacj.skill.enchant_reduction.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:book" } },
     "frame": "challenge",
-    "description": {"text": "-10% enchantment cost"},
+    "description": {"translate":"uacj.skill.enchant_reduction.desc"},
     "cost": 1,
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:enchantment_discount",
-          "value": 0.1,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:enchantment_discount", "value": 0.1, "operation": "addition" } }
     ]
   },
-  "experienceGain":{
-    "title": {"text": "Experience Gain Increase"},
-    "icon": {"type": "item", "data": {"item": "minecraft:experience_bottle"}},
+  "experienceGain": {
+    "title": {"translate":"uacj.skill.experience_gain.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:experience_bottle" } },
     "frame": "challenge",
-    "description": {"text": "+10% experience gain"},
+    "description": {"translate":"uacj.skill.experience_gain.desc"},
     "cost": 1,
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:experience_gain",
-          "value": 0.1,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:experience_gain", "value": 0.1, "operation": "addition" } }
     ]
   },
-  "enchantDefensive":{
-    "title": {"text": "Enchanted Plating"},
-    "icon": {"type": "item", "data": {"item": "minecraft:iron_chestplate"}},
+  "enchantDefensive": {
+    "title": {"translate":"uacj.skill.enchant_plating.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:iron_chestplate" } },
     "frame": "challenge",
-    "description": {"text": "+1 armor point for enchanted armor"},
+    "description": {"translate":"uacj.skill.enchant_plating.desc"},
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:enchanted_armor_bonus",
-          "value": 1.0,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:enchanted_armor_bonus", "value": 1.0, "operation": "addition" } }
     ]
   },
-  "enchantOffensive":{
-    "title": {"text": "Arcane Edge"},
-    "icon": {"type": "item", "data": {"item": "minecraft:iron_sword"}},
+  "enchantOffensive": {
+    "title": {"translate":"uacj.skill.arcane_edge.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:iron_sword" } },
     "frame": "challenge",
-    "description": {"text": "+5% attack damage for enchanted weapons"},
+    "description": {"translate":"uacj.skill.arcane_edge.desc"},
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:enchanted_weapon_damage",
-          "value": 0.05,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:enchanted_weapon_damage", "value": 0.05, "operation": "addition" } }
     ]
   },
   "magicResist": {
-    "title": {"text": "Magic Resistance"},
-    "icon": {"type": "item", "data": {"item": "minecraft:potion"}},
+    "title": {"translate":"uacj.skill.magic_resist.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:potion" } },
     "frame": "challenge",
-    "description": {"text": "+5% resistance to magic damage and reduced harmful effect duration"},
+    "description": {"translate":"uacj.skill.magic_resist.desc"},
     "rewards": [
-      {
-        "type": "puffish_skills:attribute",
-        "data": {
-          "attribute": "uacj:magic_resistance",
-          "value": 0.05,
-          "operation": "addition"
-        }
-      }
+      { "type": "puffish_skills:attribute", "data": { "attribute": "uacj:magic_resistance", "value": 0.05, "operation": "addition" } }
     ]
   },
   "skillEnchant1": {
-    "title": "Merge Enchantment",
-    "icon": {
-      "type": "item",
-      "data": {
-        "item": "minecraft:enchanted_book"
-      }
-    },
+    "title": {"translate":"uacj.skill.merge_enchant.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:enchanted_book" } },
     "frame": "challenge",
-    "description": "Hold right click while holding an enchanted book in the offhand to transfer enchantments from enchanted book to the item in the main hand",
+    "description": {"translate":"uacj.skill.merge_enchant.desc"},
     "rewards": [
-      {
-        "type": "uacj:skill",
-        "data": {
-          "skill_id": "infusion"
-        }
-      }
+      { "type": "uacj:skill", "data": { "skill_id": "infusion" } }
+    ]
+  },
+  "skillEnchant2": {
+    "title": {"translate":"uacj.skill.soul_harvest.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:wither_rose" } },
+    "frame": "challenge",
+    "description": {"translate":"uacj.skill.soul_harvest.desc"},
+    "rewards": [
+      { "type": "uacj:skill", "data": { "skill_id": "soul_harvest" } }
+    ]
+  },
+  "skillEnchant3": {
+    "title": {"translate":"uacj.skill.spectral_flight.title"},
+    "icon": { "type": "item", "data": { "item": "minecraft:nether_star" } },
+    "frame": "challenge",
+    "description": {"translate":"uacj.skill.spectral_flight.desc"},
+    "rewards": [
+      { "type": "uacj:skill", "data": { "skill_id": "spectral_flight" } }
     ]
   }
 }

@@ -110,19 +110,31 @@
 	"rf7ju5b12ddfcsk6": {
 		"definition": "skillEnchant1",
 		"x": -160,
-		"y": -32,
+		"y": 0,
 		"root": false
 	},
 	"usl97wzbtxxwb2o3": {
-		"definition": "skillEnchant1",
+		"definition": "skillEnchant2",
 		"x": 0,
 		"y": -160,
 		"root": false
 	},
 	"jy62rkaicl4fb4jb": {
-		"definition": "skillEnchant1",
-		"x": 128,
-		"y": -32,
+		"definition": "skillEnchant3",
+		"x": 160,
+		"y": 0,
+		"root": false
+	},
+	"frm9bsp718gsax4r": {
+		"definition": "experienceGain",
+		"x": 192,
+		"y": 128,
+		"root": false
+	},
+	"sp9mdv151tjuckyl": {
+		"definition": "experienceGain",
+		"x": 224,
+		"y": 32,
 		"root": false
 	}
 }

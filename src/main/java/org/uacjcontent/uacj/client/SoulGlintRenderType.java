@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 public class SoulGlintRenderType extends RenderType {
-    // Custom blue glint texture path
     private static final ResourceLocation SOUL_GLINT = new ResourceLocation("uacj", "textures/misc/soul_glint.png");
 
     public SoulGlintRenderType(String name, VertexFormat format, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
@@ -17,7 +16,7 @@ public class SoulGlintRenderType extends RenderType {
     public static RenderType soulGlint() {
         return create("soul_glint", DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false,
                 RenderType.CompositeState.builder()
-                        .setShaderState(RENDERTYPE_GLINT_SHADER)
+                        .setShaderState(RENDERTYPE_ENTITY_GLINT_SHADER)
                         .setTextureState(new RenderStateShard.TextureStateShard(SOUL_GLINT, true, false))
                         .setWriteMaskState(COLOR_WRITE)
                         .setCullState(NO_CULL)

@@ -2,24 +2,12 @@ package org.uacjcontent.uacj.core;
 
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = "uacj")
 public class SkillInteractionHandler {
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
-        intercept(event);
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        intercept(event);
-    }
-
-    private static void intercept(PlayerInteractEvent event) {
+    static void intercept(PlayerInteractEvent event) {
         var player = event.getEntity();
         if (player.getPersistentData().getBoolean("uacj_skill_infusion") && hasEnchantedBookInInventory(player)) {
             event.setCanceled(true);

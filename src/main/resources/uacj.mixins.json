@@ -8,9 +8,15 @@
   "mixins": [
     "ApothEnchantmentMixin",
     "EnchantmentMenuMixin",
+    "EntityPhasingMixin",
     "MobEffectInstanceAccessor",
+    "PlayerEntityMixin",
+    "SpectralRegistrationMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "ItemRendererMixin"
+  ]
 }

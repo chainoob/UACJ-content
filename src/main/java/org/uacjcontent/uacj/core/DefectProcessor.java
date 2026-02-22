@@ -4,12 +4,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.uacjcontent.uacj.UacjConfig;
 import org.uacjcontent.uacj.api.PuffishHandler;
 import org.uacjcontent.uacj.mixin.MobEffectInstanceAccessor;
@@ -18,23 +17,26 @@ public class DefectProcessor {
     private static final String REG = "uacj_effect_registry";
     private static final String EXP = "uacj_bonus_expiry";
 
-    @SubscribeEvent
-    public static void onEffectAdded(MobEffectEvent.Added event) {
+    public static void processEffectAddition(MobEffectEvent.Added event) {
         final LivingEntity target = event.getEntity();
-        if (target.level().isClientSide || !UacjConfig.enableDefects) return;
+        if (target.level().isClientSide) return;
 
         final MobEffectInstance effect = event.getEffectInstance();
         final boolean isBeneficial = effect.getEffect().isBeneficial();
 
-        final ServerPlayer primaryPlayer;
-
+        ServerPlayer primaryPlayer = null;
         if (isBeneficial) {
-            if (!(target instanceof ServerPlayer player)) return;
-            primaryPlayer = player;
+            if (target instanceof ServerPlayer player) primaryPlayer = player;
         } else {
-            if (!(event.getEffectSource() instanceof ServerPlayer attacker)) return;
-            primaryPlayer = attacker;
+            Entity source = event.getEffectSource();
+            if (source instanceof ServerPlayer attacker) {
+                primaryPlayer = attacker;
+            } else if (source instanceof ThrownPotion potion && potion.getOwner() instanceof ServerPlayer owner) {
+                primaryPlayer = owner;
+            }
         }
+
+        if (primaryPlayer == null) return;
 
         final float bonus = AmplificationHandler.getBonus(primaryPlayer, isBeneficial);
         if (bonus <= 0.0f) return;
@@ -47,7 +49,6 @@ public class DefectProcessor {
         final String key = effect.getEffect().getDescriptionId();
 
         if (!registry.contains(key) && registry.size() >= limit) return;
-        if (registry.getInt(key) > 0) return;
 
         final int newDur = (int) (effect.getDuration() * (1.0f + bonus));
         ((MobEffectInstanceAccessor) effect).setDuration(newDur);
@@ -59,16 +60,7 @@ public class DefectProcessor {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onHurt(LivingDamageEvent event) {
-        if (event.getSource().getEntity() instanceof net.minecraft.world.entity.projectile.ThrownPotion ||
-                event.getSource().getEntity() instanceof net.minecraft.world.entity.AreaEffectCloud)
-        {
-            return;
-        }
-
-        if (!(event.getSource().getEntity() instanceof ServerPlayer attacker)) return;
-
+    public static void processHurt(LivingDamageEvent event, ServerPlayer attacker) {
         final float bonus = AmplificationHandler.getBonus(attacker, false);
         if (bonus <= 0.0f) return;
 
@@ -84,15 +76,13 @@ public class DefectProcessor {
 
             final String key = effect.getEffect().getDescriptionId();
             final int baseDuration = registry.getInt(key);
-            final int targetDur;
+            int targetDur = 0;
 
             if (baseDuration == 0 && registry.size() < limit) {
                 targetDur = (int) (effect.getDuration() * (1.0f + bonus));
                 registry.putInt(key, targetDur);
             } else if (baseDuration > 0 && effect.getDuration() < baseDuration) {
                 targetDur = baseDuration;
-            } else {
-                targetDur = 0;
             }
 
             if (targetDur > 0) {
@@ -106,11 +96,7 @@ public class DefectProcessor {
         }
     }
 
-    @SubscribeEvent
-    public static void onTick(LivingEvent.LivingTickEvent event) {
-        final LivingEntity target = event.getEntity();
-        if (target.level().isClientSide || !UacjConfig.enableDefects) return;
-
+    public static void processTick(LivingEntity target) {
         final CompoundTag nbt = target.getPersistentData();
         if (!nbt.contains(EXP)) return;
 

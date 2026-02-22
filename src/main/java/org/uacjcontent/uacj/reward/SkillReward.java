@@ -3,8 +3,10 @@ package org.uacjcontent.uacj.reward;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.puffish.skillsmod.api.SkillsAPI;
 import net.puffish.skillsmod.api.json.JsonElement;
 import net.puffish.skillsmod.api.json.JsonObject;
@@ -49,7 +51,11 @@ public class SkillReward implements Reward {
     @Override
     public void update(RewardUpdateContext context) {
         ServerPlayer player = context.getPlayer();
-        player.getPersistentData().putBoolean("uacj_skill_" + this.skillId , true);
+        CompoundTag forgeData = player.getPersistentData();
+        CompoundTag persistedData = forgeData.getCompound(Player.PERSISTED_NBT_TAG);
+
+        persistedData.putBoolean("uacj_skill_" + this.skillId, true);
+        forgeData.put(Player.PERSISTED_NBT_TAG, persistedData);
 
         NetworkHandler.CHANNEL.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player),
                 new SyncSkillPacket(this.skillId, true));
